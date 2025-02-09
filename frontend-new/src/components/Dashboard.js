@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Typography, Card, CardContent, Button, Grid, CardActionArea, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // add react-router hook
 
 // Styled Components for Cards
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -42,16 +43,13 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const Dashboard = () => {
   // API Handlers
 
+  const navigate = useNavigate();
 
-  const handlePredictSpread = async () => {
-    try {
-      const response = await axios.post("http://localhost:5000/predict-spread");
-      alert(response.data.message);
-    } catch (error) {
-      console.error("Error predicting spread:", error);
-      alert("Failed to predict the spread.");
-    }
+  const handlePredictSpread = () => {
+    // Instead of calling axios directly, just navigate to the /predict_results page.
+    navigate("/predict_results");
   };
+
 
   
   const handleOptimizeResources = async () => {
