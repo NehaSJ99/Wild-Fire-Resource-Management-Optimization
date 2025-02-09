@@ -41,6 +41,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const Dashboard = () => {
   // API Handlers
+
+
   const handlePredictSpread = async () => {
     try {
       const response = await axios.post("http://localhost:5000/predict-spread");
@@ -51,16 +53,17 @@ const Dashboard = () => {
     }
   };
 
+  
   const handleOptimizeResources = async () => {
     try {
       const response = await axios.post("http://localhost:5000/optimize_resources"); 
-      const { status, data, message } = response.data;
+      console.log("Full response data:", response.data);
   
-      if (status === "success") {
+      if (response.data.status === "success") {
         alert("Resource optimization complete! Check console for details.");
-        console.log("Optimization Results:", data);
+        console.log("Optimization Results:", response.data.data); // Data should be 'results' from resource_optimized.py
       } else {
-        alert(`Failed to optimize resources: ${message}`);
+        alert("Failed to optimize resources.");
       }
     } catch (error) {
       console.error("Error optimizing resources:", error);
@@ -69,6 +72,7 @@ const Dashboard = () => {
   };
   
 
+ 
   const handleEvacuationPlan = async () => {
     try {
       const response = await axios.post("http://localhost:5000/emergency-evacuation");
