@@ -9,7 +9,7 @@ const PredictSpread = () => {
       <img
         src={imageSrc}
         alt="Wildfire Spread Prediction"
-        style={{ maxWidth: "200%", border: "0px solid #333", borderRadius: "0px" }}
+        style={{ maxWidth: "80%", border: "0px solid #333", borderRadius: "0px" }}
       />
     </div>
   );
