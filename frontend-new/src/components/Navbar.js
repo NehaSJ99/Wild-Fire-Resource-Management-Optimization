@@ -4,9 +4,9 @@ import { AppBar, Toolbar, Button, Typography } from "@mui/material";
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: "#000" }}> {/* Set black background */}
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1, color: "#fff" }}>
           Wildfire Resource Management
         </Typography>
         <Button color="inherit" component={Link} to="/">
