@@ -1,15 +1,15 @@
-import React from "react";
-import { Container, Typography, Card, CardContent, Button, Grid, CardActionArea, Box } from "@mui/material";
+import React, { useState } from "react";
+import { Container, Typography, Card, CardContent, Button, Grid, CardActionArea, Box, CircularProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // add react-router hook
+import { useNavigate } from "react-router-dom"; 
 
-// Styled Components for Cards
+// Styled Components
 const StyledCard = styled(Card)(({ theme }) => ({
-  height: "100%", // Ensures all cards have the same height
+  height: "100%",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between", // Pushes the button to the bottom
+  justifyContent: "space-between",
   boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.15)",
   borderRadius: "12px",
   transition: "all 0.3s ease-in-out",
@@ -17,7 +17,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
     transform: "scale(1.05)",
     boxShadow: "0px 15px 40px rgba(0, 0, 0, 0.2)",
   },
-  background: "linear-gradient(135deg, #FF7A00, #FF3A00)", // Gradient background
+  background: "linear-gradient(135deg, #FF7A00, #FF3A00)",
 }));
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
@@ -28,38 +28,38 @@ const StyledCardContent = styled(CardContent)(({ theme }) => ({
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#000", // Set button background to black
-  color: "#fff", // White text for contrast
+  backgroundColor: "#000",
+  color: "#fff",
   padding: "12px 20px",
   borderRadius: "8px",
   "&:hover": {
-    backgroundColor: "#333", // Slightly lighter black on hover
+    backgroundColor: "#333",
     transform: "scale(1.05)",
   },
   transition: "transform 0.3s ease-in-out",
-  margin: theme.spacing(2), // Adds spacing inside the card
+  margin: theme.spacing(2),
 }));
 
 const Dashboard = () => {
-  // API Handlers
-
   const navigate = useNavigate();
+  const [loadingPredict, setLoadingPredict] = useState(false);
 
   const handlePredictSpread = () => {
-    // Instead of calling axios directly, just navigate to the /predict_results page.
-    navigate("/predict_results");
+    setLoadingPredict(true);
+    setTimeout(() => {
+      setLoadingPredict(false);
+      navigate("/predict_results");
+    }, 20000); // 20 seconds delay
   };
 
-
-  
   const handleOptimizeResources = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/optimize_resources"); 
+      const response = await axios.post("http://localhost:5000/optimize_resources");
       console.log("Full response data:", response.data);
   
       if (response.data.status === "success") {
         alert("Resource optimization complete! Check console for details.");
-        console.log("Optimization Results:", response.data.data); // Data should be 'results' from resource_optimized.py
+        console.log("Optimization Results:", response.data.data);
       } else {
         alert("Failed to optimize resources.");
       }
@@ -68,16 +68,11 @@ const Dashboard = () => {
       alert("Failed to optimize resources.");
     }
   };
-  
 
- 
   const handleGenerateMap = async () => {
     try {
-      // Trigger the map generation
       const response = await fetch("http://localhost:5000/generate_map");
-  
       if (response.ok) {
-        // After the map is generated, open the evacuation map in a new tab
         const mapUrl = "http://localhost:5000/evacuation_map";
         window.open(mapUrl, "_blank");
       } else {
@@ -109,8 +104,12 @@ const Dashboard = () => {
               </StyledCardContent>
             </CardActionArea>
             <Box display="flex" justifyContent="center">
-              <StyledButton variant="contained" onClick={handlePredictSpread}>
-                Predict
+              <StyledButton 
+                variant="contained" 
+                onClick={handlePredictSpread} 
+                disabled={loadingPredict}
+              >
+                {loadingPredict ? <CircularProgress size={24} sx={{ color: "#fff" }} /> : "Predict"}
               </StyledButton>
             </Box>
           </StyledCard>

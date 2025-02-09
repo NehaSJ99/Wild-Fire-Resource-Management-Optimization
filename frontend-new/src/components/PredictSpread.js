@@ -1,7 +1,6 @@
 import React from "react";
 
 const PredictSpread = () => {
-  // Image should be placed inside the "public" folder (e.g., `public/image.png`)
   const imageSrc = process.env.PUBLIC_URL + "/image.png";
 
   return (
@@ -10,7 +9,7 @@ const PredictSpread = () => {
       <img
         src={imageSrc}
         alt="Wildfire Spread Prediction"
-        style={{ maxWidth: "95%", border: "5px solid #333", borderRadius: "0px" }}
+        style={{ maxWidth: "200%", border: "0px solid #333", borderRadius: "0px" }}
       />
     </div>
   );
