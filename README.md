@@ -29,7 +29,7 @@ The **Wildfire Management System** is a real-time application designed to predic
 ### Backend Setup
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/wildfire-management-system.git
+   git clone https://github.com/NehaSJ99/wildfire-management-system.git
    cd wildfire-management-system/backend
    ```
 
