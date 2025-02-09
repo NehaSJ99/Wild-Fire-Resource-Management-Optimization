@@ -20,21 +20,23 @@ def predict_spread():
 
 
 # Route for optimizing resources
-@app.route("/optimize_resources", methods=["POST"])
-def optimize_resources():
-    # This is where you would trigger optimization logic for resource allocation.
-    # For now, it's a dummy response.
+@app.route("/resource_optimization", methods=["GET", "POST"])
+def resource_optimization():
+    try:
+        # Execute the `resource_optimized.py` script
+        result = subprocess.run(["python", "resource_optimized.py"], capture_output=True, text=True)
+        
+        # Check for errors
+        if result.returncode != 0:
+            return jsonify({"status": "error", "message": "Error executing script", "error": result.stderr}), 500
+
+        # Parse JSON output from the script
+        output = json.loads(result.stdout)
+        
+        return jsonify({"status": "success", "data": output})
     
-    response = {
-        "status": "success",
-        "message": "Resource optimization completed successfully",
-        "resources_allocated": {
-            "firefighters": 15,
-            "trucks": 5,
-            "helicopters": 2,
-        },
-    }
-    return jsonify(response)
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 # Route for the emergency evacuation plan
