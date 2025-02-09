@@ -5,24 +5,6 @@ import subprocess
 import json
 import os
 
-model = tf.keras.models.load_model('predictions.keras')
-
-# Route for predicting the spread of fire
-@app.route("/predict_spread", methods=["POST"])
-def predict_spread():
-    # Get data from the frontend (e.g., input data for prediction)
-    data = request.get_json()
-    
-    # Perform the prediction (adjust input data as needed)
-    prediction_input = data['input_data']  # Assuming the frontend sends input_data
-    
-    # Make prediction using the model
-    prediction = model.predict(prediction_input)
-    
-    # Return the prediction result
-    return jsonify({'prediction': prediction.tolist()})  # Convert to list for JSON serialization
-
-
 # Route for optimizing resources
 @app.route('/optimize_resources', methods=['POST'])  # Ensure the route is exactly this
 def optimize_resources():
