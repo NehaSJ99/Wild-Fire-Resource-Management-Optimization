@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/map" element={<MapView />} />
-        <Route path="/resource_optimization" element={<OptimizedResources />} />
+        <Route path="/optimize_resources" element={<OptimizedResources />} />
       </Routes>
     </Router>
   );

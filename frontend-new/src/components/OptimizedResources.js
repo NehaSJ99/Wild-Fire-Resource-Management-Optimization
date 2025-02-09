@@ -9,8 +9,9 @@ const OptimizedResources = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post("http://localhost:3000/resource_optimization");
-                setData(response.data.data);
+                const response = await axios.post("/optimize_resources");
+                
+                setData(response.data.resources_allocted);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);

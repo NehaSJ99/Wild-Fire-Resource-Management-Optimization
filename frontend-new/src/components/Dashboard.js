@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   const handleOptimizeResources = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/resource_optimization");
+      const response = await axios.post("http://localhost:5000/optimize_resources"); 
       const { status, data, message } = response.data;
   
       if (status === "success") {

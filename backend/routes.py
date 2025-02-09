@@ -1,42 +1,50 @@
-from flask import jsonify
+from flask import Flask, jsonify, request
 from app import app
+import tensorflow as tf 
+
+model = tf.keras.models.load_model('predictions.keras')
 
 # Route for predicting the spread of fire
 @app.route("/predict_spread", methods=["POST"])
 def predict_spread():
-    # Here, you can call the actual model or algorithm to predict the spread.
-    # For now, it's a dummy response.
-    # Example: you could integrate machine learning models, data processing, etc.
-
-    response = {
-        "status": "success",
-        "message": "Fire spread prediction completed successfully",
-        "prediction": {
-            "spread_rate": 12.5,  # Example output
-            "area_affected": 2500,  # Example output
-        },
-    }
-    return jsonify(response)
+    # Get data from the frontend (e.g., input data for prediction)
+    data = request.get_json()
+    
+    # Perform the prediction (adjust input data as needed)
+    prediction_input = data['input_data']  # Assuming the frontend sends input_data
+    
+    # Make prediction using the model
+    prediction = model.predict(prediction_input)
+    
+    # Return the prediction result
+    return jsonify({'prediction': prediction.tolist()})  # Convert to list for JSON serialization
 
 
 # Route for optimizing resources
-@app.route("/resource_optimization", methods=["GET", "POST"])
-def resource_optimization():
+@app.route('/optimize_resources', methods=['POST'])  # Ensure the route is exactly this
+def optimize_resources():
+    response = {
+        "status": "success",
+        "message": "Resource optimization completed successfully",
+        "resources_allocated": {
+            "firefighters": 15,
+            "trucks": 5,
+            "helicopters": 2,
+        },
+    }
+    return jsonify(response)
+    '''
     try:
-        # Execute the `resource_optimized.py` script
-        result = subprocess.run(["python", "resource_optimized.py"], capture_output=True, text=True)
-        
-        # Check for errors
-        if result.returncode != 0:
-            return jsonify({"status": "error", "message": "Error executing script", "error": result.stderr}), 500
-
-        # Parse JSON output from the script
-        output = json.loads(result.stdout)
-        
-        return jsonify({"status": "success", "data": output})
-    
+        result = subprocess.run(['python', 'resource_optimized.py'], capture_output=True, text=True)
+        if result.returncode == 0:
+            output = result.stdout
+            return jsonify({'status': 'success', 'data': output})
+        else:
+            return jsonify({'status': 'error', 'message': 'Script execution failed', 'error': result.stderr}), 500
     except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    '''
+    
 
 
 # Route for the emergency evacuation plan
