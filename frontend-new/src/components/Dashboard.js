@@ -73,13 +73,21 @@ const Dashboard = () => {
   
 
  
-  const handleEvacuationPlan = async () => {
+  const handleGenerateMap = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/emergency-evacuation");
-      alert(response.data.message);
+      // Trigger the map generation
+      const response = await fetch("http://localhost:5000/generate_map");
+  
+      if (response.ok) {
+        // After the map is generated, open the evacuation map in a new tab
+        const mapUrl = "http://localhost:5000/evacuation_map";
+        window.open(mapUrl, "_blank");
+      } else {
+        alert("Error generating the map.");
+      }
     } catch (error) {
-      console.error("Error planning evacuation:", error);
-      alert("Failed to plan evacuation.");
+      console.error("Error:", error);
+      alert("Error generating the map.");
     }
   };
 
@@ -145,7 +153,7 @@ const Dashboard = () => {
               </StyledCardContent>
             </CardActionArea>
             <Box display="flex" justifyContent="center">
-              <StyledButton variant="contained" onClick={handleEvacuationPlan}>
+              <StyledButton variant="contained" onClick={handleGenerateMap}>
                 Plan Evacuation
               </StyledButton>
             </Box>

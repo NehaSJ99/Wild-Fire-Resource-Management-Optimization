@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from app import app
 import tensorflow as tf 
 import subprocess
 import json
+import os
 
 model = tf.keras.models.load_model('predictions.keras')
 
@@ -55,18 +56,28 @@ def optimize_resources():
 
 
 # Route for the emergency evacuation plan
-@app.route("/evacuation_plan", methods=["POST"])
-def evacuation_plan():
-    # Logic for creating or retrieving an evacuation plan would go here.
-    # This is a placeholder response.
-    
-    response = {
-        "status": "success",
-        "message": "Emergency evacuation plan created successfully",
-        "evacuation_routes": [
-            "Route A: 5 km",
-            "Route B: 3 km",
-            "Route C: 8 km",
-        ],
-    }
-    return jsonify(response)
+@app.route('/generate_map')
+def generate_map():
+    try:
+        # Run map.py to generate the map
+        result = subprocess.run(['python', 'map.py'], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+        # Log the output of map.py for debugging
+        print("Output:", result.stdout.decode())
+        print("Error:", result.stderr.decode())
+
+        # After map.py runs, the generated_map.html file will be saved in the static directory
+        return "Map generated successfully. <a href='/evacuation_map'>View the map</a>"
+
+    except subprocess.CalledProcessError as e:
+        print("Error generating map:", e)
+        print("Error output:", e.stderr.decode())  # Log error output from map.py
+        return "Error generating the map", 500
+
+
+@app.route('/evacuation_map')
+def serve_map():
+    # Ensure the path to static is correct
+    return send_from_directory(os.getcwd(), 'generated_map.html')
+
+
