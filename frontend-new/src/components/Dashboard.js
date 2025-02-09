@@ -53,13 +53,21 @@ const Dashboard = () => {
 
   const handleOptimizeResources = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/optimize-resources");
-      alert(response.data.message);
+      const response = await axios.post("http://localhost:3000/resource_optimization");
+      const { status, data, message } = response.data;
+  
+      if (status === "success") {
+        alert("Resource optimization complete! Check console for details.");
+        console.log("Optimization Results:", data);
+      } else {
+        alert(`Failed to optimize resources: ${message}`);
+      }
     } catch (error) {
       console.error("Error optimizing resources:", error);
       alert("Failed to optimize resources.");
     }
   };
+  
 
   const handleEvacuationPlan = async () => {
     try {

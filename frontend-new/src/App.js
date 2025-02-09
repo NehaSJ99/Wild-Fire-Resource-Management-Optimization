@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import MapView from "./components/MapView";
 import Navbar from "./components/Navbar"; 
+import OptimizedResources from "./components/OptimizedResources";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/map" element={<MapView />} />
+        <Route path="/resource_optimization" element={<OptimizedResources />} />
       </Routes>
     </Router>
   );
