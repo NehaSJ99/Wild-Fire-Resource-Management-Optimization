@@ -8,22 +8,34 @@ const StyledCard = styled(Card)(({ theme }) => ({
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)",
+  boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.15)",
   borderRadius: "12px",
+  transition: "all 0.3s ease-in-out",
+  "&:hover": {
+    transform: "scale(1.05)",
+    boxShadow: "0px 15px 40px rgba(0, 0, 0, 0.2)",
+  },
+  background: "linear-gradient(135deg, #FF7A00, #FF3A00)", // Gradient background
 }));
 
 const StyledCardContent = styled(CardContent)(({ theme }) => ({
   flexGrow: 1,
   textAlign: "center",
+  padding: theme.spacing(3),
+  color: "#fff", // White text for contrast
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: "auto",
   backgroundColor: theme.palette.primary.main,
   color: "#fff",
+  padding: "12px 20px",
+  borderRadius: "8px",
   "&:hover": {
     backgroundColor: theme.palette.primary.dark,
+    transform: "scale(1.05)",
   },
+  transition: "transform 0.3s ease-in-out",
 }));
 
 const Dashboard = () => {
@@ -62,7 +74,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: "bold" }}>
+      <Typography variant="h4" gutterBottom align="center" sx={{ fontWeight: "bold", color: "#333" }}>
         Wildfire Resource Management Dashboard
       </Typography>
       <Grid container spacing={3} justifyContent="center" alignItems="center" sx={{ marginTop: "40px" }}>
@@ -71,10 +83,10 @@ const Dashboard = () => {
           <StyledCard>
             <CardActionArea>
               <StyledCardContent>
-                <Typography variant="h5" sx={{ fontSize: "24px", fontWeight: "500", color: "#333" }}>
+                <Typography variant="h5" sx={{ fontSize: "24px", fontWeight: "500", color: "#fff" }}>
                   Predict the Spread
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ fontSize: "16px", color: "#fff" }}>
                   Analyze fire spread patterns using prediction models and data.
                 </Typography>
               </StyledCardContent>
@@ -90,10 +102,10 @@ const Dashboard = () => {
           <StyledCard>
             <CardActionArea>
               <StyledCardContent>
-                <Typography variant="h5" sx={{ fontSize: "24px", fontWeight: "500", color: "#333" }}>
+                <Typography variant="h5" sx={{ fontSize: "24px", fontWeight: "500", color: "#fff" }}>
                   Optimize the Resources
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ fontSize: "16px", color: "#fff" }}>
                   Deploy resources efficiently to fight the wildfire and minimize loss.
                 </Typography>
               </StyledCardContent>
@@ -109,10 +121,10 @@ const Dashboard = () => {
           <StyledCard>
             <CardActionArea>
               <StyledCardContent>
-                <Typography variant="h5" sx={{ fontSize: "24px", fontWeight: "500", color: "#333" }}>
+                <Typography variant="h5" sx={{ fontSize: "24px", fontWeight: "500", color: "#fff" }}>
                   Emergency Evacuation Plan
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ fontSize: "16px", color: "#fff" }}>
                   Plan evacuation routes and actions to protect civilians and resources.
                 </Typography>
               </StyledCardContent>
