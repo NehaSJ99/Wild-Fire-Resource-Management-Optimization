@@ -6,6 +6,7 @@ The **Wildfire Management System** is a real-time application designed to predic
 
 ![Dashboard](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/dashboard.PNG)
 ![Wild Fire Map](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/firemap.PNG)
+![Evacuation Map](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/evacuationMap.PNG)
 
 
 ## Features
