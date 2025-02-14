@@ -1,7 +1,7 @@
 # Wildfire Management System
 
 ## Overview
-The **Wildfire Management System** is a real-time application designed to predict wildfire spread, assess risks, and optimize the allocation of firefighting resources such as firefighters, water tankers, and aircraft. The system uses machine learning models to forecast fire spread based on weather and environmental data, and then applies optimization algorithms to ensure the most efficient use of available resources. The goal is to minimize damage, enhance emergency response, and protect lives and infrastructure.
+The **Wildfire Management System** is a real-time application designed to predict wildfire spread, assess risks, and optimize the allocation of firefighting resources such as firefighters, water tankers, and aircraft. The system uses machine learning models to forecast fire spread based on weather and environmental data, and then applies optimization algorithms to ensure the most efficient use of available resources. The goal is to minimize damage, enhance emergency response, and protect lives and infrastructure. The application leverages NASA’s Fire Information for Resource Management System (FIRMS) API to retrieve real-time wildfire data from around the world.
 
 ![Wild Fire Map](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/firemap.PNG)
 ![Dashboard](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/dashboard.PNG)
@@ -21,7 +21,7 @@ The **Wildfire Management System** is a real-time application designed to predic
 - **Machine Learning:** Scikit-learn (for predictive models)
 - **Data Processing:** Pandas (for handling and processing data)
 - **Real-Time Data:** OpenWeatherMap API (for weather data), Google Maps API (for geolocation services)
-- **Data Visualization:** D3.js, Plotly (for interactive graphs and mapping)
+- **Data Visualization:** D3.js, Plotly, Folium (for interactive graphs and mapping)
 
 ## Installation
 
