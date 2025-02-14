@@ -4,8 +4,8 @@
 ## Overview
 The **Wildfire Management System** is a real-time application designed to predict wildfire spread, assess risks, and optimize the allocation of firefighting resources such as firefighters, water tankers, and aircraft. The system uses machine learning models to forecast fire spread based on weather and environmental data, and then applies optimization algorithms to ensure the most efficient use of available resources. The goal is to minimize damage, enhance emergency response, and protect lives and infrastructure.
 
-![Dashboard](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/dashboard.PNG)
 ![Wild Fire Map](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/firemap.PNG)
+![Dashboard](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/dashboard.PNG)
 ![Evacuation Map](https://github.com/NehaSJ99/Wild-Fire-Resource-Management-Optimization/blob/main/evacuationMap.PNG)
 
 
