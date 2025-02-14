@@ -2,7 +2,7 @@
 import pandas as pd
 
 # 🔹 Replace with your NASA FIRMS API Key
-MAP_KEY = "546e11b1bdba71b1496bc9e918f93b57"
+MAP_KEY = ""
 
 def get_fire_data(country_code="IND", days=3):
     """Fetch fire data from NASA FIRMS API and return as JSON."""
