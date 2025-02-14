@@ -4,6 +4,7 @@ import tensorflow as tf
 import subprocess
 import json
 import os
+import get_fire_data  # Import the script
 
 # Route for optimizing resources
 @app.route('/optimize_resources', methods=['POST'])  # Ensure the route is exactly this
@@ -62,4 +63,16 @@ def serve_map():
     # Ensure the path to static is correct
     return send_from_directory(os.getcwd(), 'generated_map.html')
 
+@app.route("/detect-fire", methods=["GET"])
+def detect_fire():
+    """Fetch fire data when the user clicks the button."""
+    country = request.args.get("country", "IND")
+    days = request.args.get("days", 3)
+
+    fire_data = get_fire_data.get_fire_data(country, int(days))
+
+    if not fire_data:
+        return jsonify({"message": "No fire data found!", "data": []}), 404
+
+    return jsonify({"message": "Fire data retrieved successfully!", "data": fire_data})
 

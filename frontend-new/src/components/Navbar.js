@@ -12,8 +12,8 @@ const Navbar = () => {
         <Button color="inherit" component={Link} to="/">
           Dashboard
         </Button>
-        <Button color="inherit" component={Link} to="/map">
-          Map View
+        <Button color="inherit" component={Link} to="/detect-fire">
+          Live Fire Map View
         </Button>
       </Toolbar>
     </AppBar>
