@@ -1,4 +1,3 @@
-# Wild-Fire-Resource-Management-Optimization:
 # Wildfire Management System
 
 ## Overview
